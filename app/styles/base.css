@@ -8,6 +8,8 @@
 
 html {
   box-sizing: border-box;
+  /*1rem = 10px*/
+  font-size: 62.5%;
 }
 
 html,
@@ -17,8 +19,9 @@ body {
 }
 
 body {
+  font-family: var(--font-metropolis);
   font-weight: 400;
-  font-size: 16px;
+  font-size: 1.6rem;
   line-height: 1.5;
   -webkit-font-smoothing: antialiased;
 }
@@ -30,7 +33,7 @@ img {
   font-style: italic;
   background-repeat: no-repeat;
   background-size: cover;
-  shape-margin: 1.2rem;
+  shape-margin: 1.92rem;
   pointer-events: none;
 }
 

@@ -1,0 +1,11 @@
+:root {
+  /* each color var is a set of rgb values */
+  /* which would be use as so: `color: rgb(--color-site-a) OR color: rgba(--color-site-a, 50%)` */
+  --color-site-a: 102, 112, 133;
+  --color-site-b: 16, 24, 40;
+  --color-site-c: 52, 64, 84;
+  --color-site-d: 237, 50, 55;
+  --color-site-e: 244, 132, 135;
+
+  --color-white: 255, 255, 255;
+}
