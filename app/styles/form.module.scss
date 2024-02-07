@@ -1,0 +1,35 @@
+.form {
+  width: 100%;
+}
+
+.formInputContainer {
+  width: 100%;
+
+  &:not(:last-child) {
+    margin-bottom: 2rem;
+  }
+
+  &>label {
+    display: block;
+    width: fit-content;
+    font-weight: 600;
+    font-size: 1.4rem;
+    text-transform: capitalize;
+    margin-bottom: 0.6rem;
+    color: rgb(var(--color-site-c));
+    cursor: pointer;
+  }
+
+  &>input {
+    width: 100%;
+    padding: 1rem 1.4rem;
+    border: 1px solid #d0d5dd;
+    border-radius: 0.8rem;
+  }
+}
+
+.footerText {
+  margin-top: 0.6rem;
+  font-size: 1.4rem;
+  position: relative;
+}
