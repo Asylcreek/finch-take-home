@@ -25,6 +25,7 @@
     padding: 1rem 1.4rem;
     border: 1px solid #d0d5dd;
     border-radius: 0.8rem;
+    transition: border-color ease-in-out 0.2s;
   }
 
   /* Checkbox styles */
@@ -67,6 +68,16 @@
       top: 0;
       left: 3.5px;
     }
+  }
+}
+
+.inputError {
+  &>input {
+    border-color: rgb(var(--color-site-d));
+  }
+
+  &>.footerText {
+    color: rgb(var(--color-site-d));
   }
 }
 
