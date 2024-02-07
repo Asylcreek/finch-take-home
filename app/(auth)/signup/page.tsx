@@ -10,7 +10,7 @@ const SignUpPage = () => {
         <h1 className={styles.heading}>Sign up</h1>
       </div>
 
-      <div className={formStyles.formInputContainer}>
+      <div className={formStyles.inputContainer}>
         <label htmlFor="name">
           Name<span>*</span>
         </label>
@@ -23,7 +23,7 @@ const SignUpPage = () => {
         />
       </div>
 
-      <div className={formStyles.formInputContainer}>
+      <div className={formStyles.inputContainer}>
         <label htmlFor="email">
           Email<span>*</span>
         </label>
