@@ -43,6 +43,7 @@ const login = async (_: InitialState, formData: FormData) => {
       body: JSON.stringify(result.data),
     });
   } catch (e: unknown) {
+    console.log(e);
     return { message: (e as { message: string }).message };
   }
 
