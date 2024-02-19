@@ -5,7 +5,7 @@ import { SignJWT, jwtVerify } from 'jose';
 
 import type { User } from '@/types/user.type';
 
-const secretKey = 'finchglow-travel-booking';
+const secretKey = process.env.SECRET_KEY;
 const key = new TextEncoder().encode(secretKey);
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
@@ -19,20 +19,31 @@ export async function encrypt(payload: any) {
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 export async function decrypt(input: string): Promise<any> {
-  const { payload } = await jwtVerify(input, key, {
-    algorithms: ['HS256'],
-  });
+  let payload;
+
+  try {
+    const verified = await jwtVerify(input, key, {
+      algorithms: ['HS256'],
+    });
+
+    payload = verified.payload;
+  } catch {
+    return null;
+  }
+
   return payload;
 }
 
-type Session = { user: User; expiresAt: Date };
+type Session = { user: User; expiresAt: Date } | null;
 
-export async function getSession(): Promise<Session | null> {
+export async function getSession(): Promise<Session> {
   const session = cookies().get('session')?.value;
 
   if (!session) return null;
 
   const data: Session = await decrypt(session);
+
+  if (!data) return null;
 
   if (new Date() > data.expiresAt) return null;
 
