@@ -8,7 +8,7 @@ import clsx from 'clsx';
 import authLayoutStyles from '../(auth)/layout.module.scss';
 import styles from './styles.module.scss';
 import signUpStyles from '../(auth)/signup/styles.module.scss';
-import formStyles from '@/app/styles/form.module.scss';
+import formStyles from '@/styles/form.module.scss';
 
 import SidebarContainer from '../(auth)/sidebar-container.component';
 

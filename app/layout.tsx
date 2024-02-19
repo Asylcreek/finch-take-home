@@ -2,10 +2,10 @@ import type { Metadata } from 'next';
 
 import type { ReactNode } from 'react';
 
-import './styles/vars.css';
-import './styles/base.css';
+import '@/styles/vars.css';
+import '@/styles/base.css';
 
-import { metropolis } from './helpers/fonts';
+import { metropolis } from '@/helpers/fonts';
 
 export const metadata: Metadata = {
   title: 'Quickly',

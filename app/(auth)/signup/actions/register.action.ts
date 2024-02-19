@@ -4,8 +4,8 @@ import { typeToFlattenedError, z } from 'zod';
 import isMobilePhone from 'validator/lib/isMobilePhone';
 import { redirect } from 'next/navigation';
 
-import { API_BASE_URL } from '@/app/helpers/constants';
-import routes from '@/app/helpers/routes';
+import { API_BASE_URL } from '@/helpers/constants';
+import routes from '@/helpers/routes';
 
 const registerSchema = z
   .object({

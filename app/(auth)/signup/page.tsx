@@ -4,7 +4,7 @@ import Link from 'next/link';
 import { useFormState, useFormStatus } from 'react-dom';
 import clsx from 'clsx';
 
-import formStyles from '@/app/styles/form.module.scss';
+import formStyles from '@/styles/form.module.scss';
 import styles from './styles.module.scss';
 
 import register, { InitialState } from './actions/register.action';

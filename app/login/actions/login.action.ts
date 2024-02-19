@@ -4,8 +4,8 @@ import { cookies } from 'next/headers';
 import { redirect } from 'next/navigation';
 import { typeToFlattenedError, z } from 'zod';
 
-import { API_BASE_URL } from '@/app/helpers/constants';
-import routes from '@/app/helpers/routes';
+import { API_BASE_URL } from '@/helpers/constants';
+import routes from '@/helpers/routes';
 
 import { encrypt } from '@/lib/auth';
 

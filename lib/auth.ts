@@ -3,7 +3,7 @@
 import { cookies } from 'next/headers';
 import { SignJWT, jwtVerify } from 'jose';
 
-import type { User } from '@/app/types/user.type';
+import type { User } from '@/types/user.type';
 
 const secretKey = 'finchglow-travel-booking';
 const key = new TextEncoder().encode(secretKey);
