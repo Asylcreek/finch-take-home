@@ -1,5 +1,8 @@
+'use client';
+
 import Image from 'next/image';
 import Link from 'next/link';
+import { useFormState, useFormStatus } from 'react-dom';
 import clsx from 'clsx';
 
 import authLayoutStyles from '../(auth)/layout.module.scss';
@@ -9,9 +12,19 @@ import formStyles from '@/app/styles/form.module.scss';
 
 import SidebarContainer from '../(auth)/sidebar-container.component';
 
+import login, { InitialState } from './actions/login.action';
+
 import logo from '@/public/images/logo.png';
 
+const initialState: InitialState = {};
+
 const LoginPage = () => {
+  const [formState, formAction] = useFormState(login, initialState);
+
+  if (formState?.message) {
+    alert(formState.message);
+  }
+
   return (
     <main className={authLayoutStyles.main}>
       <SidebarContainer
@@ -23,14 +36,19 @@ const LoginPage = () => {
       </SidebarContainer>
 
       <div className={authLayoutStyles.formWrapper}>
-        <form className={signUpStyles.form}>
+        <form className={signUpStyles.formContainer} action={formAction}>
           <div className={signUpStyles.headingContainer}>
             <h1 className={signUpStyles.heading}>Welcome back</h1>
 
             <p>Welcome back! Please enter your details</p>
           </div>
 
-          <div className={formStyles.inputContainer}>
+          <div
+            className={clsx(
+              formStyles?.inputContainer,
+              formState?.errors?.email && formStyles.inputError
+            )}
+          >
             <label htmlFor="email">
               Email<span>*</span>
             </label>
@@ -41,9 +59,20 @@ const LoginPage = () => {
               id="email"
               placeholder="Enter your email"
             />
+
+            {formState?.errors?.email && (
+              <p className={formStyles.footerText}>
+                {formState.errors.email[0]}
+              </p>
+            )}
           </div>
 
-          <div className={formStyles.inputContainer}>
+          <div
+            className={clsx(
+              formStyles?.inputContainer,
+              formState?.errors?.password && formStyles.inputError
+            )}
+          >
             <label htmlFor="password">
               Password<span>*</span>
             </label>
@@ -54,6 +83,12 @@ const LoginPage = () => {
               id="password"
               placeholder="Enter your password"
             />
+
+            {formState?.errors?.password && (
+              <p className={formStyles.footerText}>
+                {formState.errors.password[0]}
+              </p>
+            )}
           </div>
 
           <div className={styles.forgotPasswordContainer}>
@@ -71,10 +106,20 @@ const LoginPage = () => {
             <Link href={'#'}>Forgot password</Link>
           </div>
 
-          <button className={signUpStyles.btn}>Log in</button>
+          <FormButton />
         </form>
       </div>
     </main>
+  );
+};
+
+const FormButton = () => {
+  const { pending } = useFormStatus();
+
+  return (
+    <button type="submit" className={signUpStyles.btn} disabled={pending}>
+      {pending ? 'Logging in...' : 'Log in'}
+    </button>
   );
 };
 
