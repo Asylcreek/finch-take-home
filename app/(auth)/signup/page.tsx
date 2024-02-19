@@ -9,6 +9,8 @@ import styles from './styles.module.scss';
 
 import register, { InitialState } from './actions/register.action';
 
+import routes from '@/helpers/routes';
+
 const initialState: InitialState = {};
 
 const SignUpPage = () => {
@@ -173,7 +175,7 @@ const SignUpPage = () => {
 
         <div className={styles.alternateActionContainer}>
           <p>Already have an account?</p>
-          <Link href="#">Log in</Link>
+          <Link href={routes.login()}>Log in</Link>
         </div>
       </form>
     </div>
