@@ -1,23 +1,11 @@
 'use server';
 
-import { z } from 'zod';
+import { typeToFlattenedError, z } from 'zod';
 import isMobilePhone from 'validator/lib/isMobilePhone';
 import { redirect } from 'next/navigation';
 
 import { API_BASE_URL } from '@/app/helpers/constants';
 import routes from '@/app/helpers/routes';
-
-export type InitialState = {
-  errors?: {
-    first_name?: string[];
-    last_name?: string[];
-    email?: string[];
-    password?: string[];
-    password_confirmation?: string[];
-    phone?: string[];
-  };
-  message?: string;
-};
 
 const registerSchema = z
   .object({
@@ -32,11 +20,11 @@ const registerSchema = z
       .email({ message: 'Email is invalid' }),
     password: z
       .string({ required_error: 'Please enter your password' })
-      .min(8, { message: 'Password must be 8 or more characters' }),
+      .min(8, { message: 'Password must contain 8 or more characters' }),
     password_confirmation: z
       .string({ required_error: 'Please reenter your password' })
       .min(8, {
-        message: 'Password must be 8 or more characters',
+        message: 'Password must contain 8 or more characters',
       }),
     phone: z
       .string({ required_error: 'Please enter your phone number' })
@@ -51,6 +39,13 @@ const registerSchema = z
     path: ['phone'],
   });
 
+type RegisterSchema = z.infer<typeof registerSchema>;
+
+export type InitialState = {
+  errors?: typeToFlattenedError<RegisterSchema, string>['fieldErrors'];
+  message?: string;
+};
+
 const register = async (_: InitialState, formData: FormData) => {
   const fields = Object.fromEntries(formData.entries());
 
@@ -60,13 +55,19 @@ const register = async (_: InitialState, formData: FormData) => {
     return { errors: result.error.flatten().fieldErrors };
   }
 
-  const res = await fetch(API_BASE_URL + '/register', {
-    method: 'POST',
-    headers: {
-      'Content-Type': 'application/json',
-    },
-    body: JSON.stringify(result.data),
-  });
+  let res: Response;
+
+  try {
+    res = await fetch(API_BASE_URL + '/register', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(result.data),
+    });
+  } catch (e: unknown) {
+    return { message: (e as { message: string }).message };
+  }
 
   if (res.ok) {
     redirect(routes.login());

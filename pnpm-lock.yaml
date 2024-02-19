@@ -8,6 +8,9 @@ dependencies:
   clsx:
     specifier: ^2.1.0
     version: 2.1.0
+  jose:
+    specifier: ^5.2.2
+    version: 5.2.2
   next:
     specifier: ^14.1.0
     version: 14.1.0(react-dom@18.2.0)(react@18.2.0)(sass@1.70.0)
@@ -1847,6 +1850,10 @@ packages:
       reflect.getprototypeof: 1.0.5
       set-function-name: 2.0.1
     dev: true
+
+  /jose@5.2.2:
+    resolution: {integrity: sha512-/WByRr4jDcsKlvMd1dRJnPfS1GVO3WuKyaurJ/vvXcOaUQO8rnNObCQMlv/5uCceVQIq5Q4WLF44ohsdiTohdg==}
+    dev: false
 
   /js-tokens@4.0.0:
     resolution: {integrity: sha512-RdJUflcE3cUzKiMqQgsCu06FPu9UdIJO0beYbPhHN4k6apgJtifcoCtT9bcxOpYBtpD2kCM6Sbzg4CausW/PKQ==}
