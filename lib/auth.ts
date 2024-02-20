@@ -47,5 +47,5 @@ export async function getSession(): Promise<Session> {
 
   if (new Date() > data.expiresAt) return null;
 
-  return await decrypt(session);
+  return data;
 }
